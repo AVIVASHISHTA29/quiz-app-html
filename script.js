@@ -61,6 +61,12 @@ const showHighscores = () => {
         ).toLocaleTimeString()})</p>`
     )
     .join("");
+
+  if (highScores.length == 0) {
+    document.getElementById("highscores").innerHTML =
+      "<h3>No Scores Yet!</h3><h4>Play the game to see your score's here.</h4>";
+    // https://avivashishta29.github.io/quiz-app-html/
+  }
 };
 
 document.getElementById("start-btn").addEventListener("click", startQuiz);
