@@ -1,3 +1,4 @@
+// Initialize the current question index, score, high scores from local storage, quiz data, user name and selected option
 let currentQuestion = 0;
 let score = 0;
 let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
@@ -5,12 +6,14 @@ let quizData = [];
 let userName = "";
 let selectedOption = "";
 
+// Function to load quiz data from quizData.json file
 const loadQuizData = async () => {
   const res = await fetch("quizData.json");
   quizData = await res.json();
   loadQuestion();
 };
 
+// Function to load the current question and options
 const loadQuestion = () => {
   const questionObj = quizData[currentQuestion];
   document.getElementById("question").innerText = questionObj.question;
@@ -26,6 +29,7 @@ const loadQuestion = () => {
   document.getElementById("next-btn").style.display = "none";
 };
 
+// Function to start the quiz, get the username and display the quiz container
 const startQuiz = () => {
   userName = prompt("Enter your username");
   document.getElementById("start-page").style.display = "none";
@@ -33,6 +37,7 @@ const startQuiz = () => {
   loadQuizData();
 };
 
+// Function to end the quiz, hide quiz container, display score, and store high scores in local storage
 const endQuiz = () => {
   document.getElementById("quiz-container").style.display = "none";
   document.getElementById("score-container").style.display = "block";
@@ -48,6 +53,7 @@ const endQuiz = () => {
   localStorage.setItem("highScores", JSON.stringify(highScores));
 };
 
+// Function to show high scores page with all the scores from local storage
 const showHighscores = () => {
   document.getElementById("start-page").style.display = "none";
   document.getElementById("highscore-page").style.display = "block";
@@ -65,15 +71,16 @@ const showHighscores = () => {
   if (highScores.length == 0) {
     document.getElementById("highscores").innerHTML =
       "<h3>No Scores Yet!</h3><h4>Play the game to see your score's here.</h4>";
-    // https://avivashishta29.github.io/quiz-app-html/
   }
 };
 
+// Event listeners for Start Quiz button and View Highscores button
 document.getElementById("start-btn").addEventListener("click", startQuiz);
 document
   .getElementById("highscore-btn")
   .addEventListener("click", showHighscores);
 
+// Event listener for Next Question button
 document.getElementById("next-btn").addEventListener("click", () => {
   currentQuestion++;
   if (currentQuestion < quizData.length) {
@@ -88,6 +95,7 @@ document.getElementById("next-btn").addEventListener("click", () => {
   }
 });
 
+// Event listeners for the option buttons, updating score and showing whether the answer is correct or not
 for (let i = 0; i < 4; i++) {
   document.getElementById(`btn${i}`).addEventListener("click", (event) => {
     selectedOption = event.target;
