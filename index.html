@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div id="header">
+      <h2>Your Score: <span id="score">0</span></h2>
+      <!-- <h2>High Score: <span id="high-score">0</span></h2> -->
+    </div>
+    <div id="start-page">
+      <button id="start-btn">Start Quiz</button>
+      <button id="highscore-btn">View Score Board</button>
+    </div>
+
+    <div id="quiz-container" style="display: none">
+      <div id="progress-bar-text">0%</div>
+      <div id="progress-bar">
+        <div id="progress-bar-fill"></div>
+      </div>
+      <p id="message"></p>
+      <h2 id="question"></h2>
+      <button class="option-btn" id="btn0"></button>
+      <button class="option-btn" id="btn1"></button>
+      <button class="option-btn" id="btn2"></button>
+      <button class="option-btn" id="btn3"></button>
+
+      <button id="next-btn" style="display: none">Next Question</button>
+    </div>
+    <div id="score-container" style="display: none">
+      <h2>Your Final Score: <span id="final-score"></span></h2>
+      <h2>High Score: <span id="final-high-score"></span></h2>
+    </div>
+    <div id="highscore-page" style="display: none">
+      <h2>Score Board</h2>
+      <div id="highscores"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
